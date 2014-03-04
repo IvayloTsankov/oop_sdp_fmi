@@ -1,0 +1,30 @@
+CLASSESSSSSS:
+
+1)  Same as structures BUT:
+    in structures everything by default is public
+    in classes everything by default is private
+
+
+2)
+    public
+    private
+    protected
+
+
+3)
+
+    the big 4 - for classe which manage dynamic memory
+        why????
+
+
+4)
+    Functions
+5)
+    Data validation
+        NEVER NEVER trust user data
+
+
+6)
+    Creation/Usage/Life of the object
+
+
