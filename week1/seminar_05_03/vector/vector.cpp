@@ -31,6 +31,27 @@ Vector::Vector(const Vector& r_vector)
     copy(r_vector.data_,this->data_, r_vector.size_);
 }
 
+Vector& Vector::operator = (const Vector& r_vector)
+{
+    if(this != &r_vector)
+    {
+        if(this->data_ != NULL)
+        {
+            delete [] this->data_;
+            this->data_ = NULL;
+        }
+        
+        this->capacity_ = r_vector.capacity_;
+        this->size_ = r_vector.size_;
+
+        this->data_ = new int[this->capacity_];
+
+        copy(r_vector.data_, this->data_, r_vector.size_);
+    }
+
+    return *this;
+}
+
 Vector::~Vector()
 {
     if(this->data_ != NULL)
