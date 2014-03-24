@@ -1,0 +1,98 @@
+class summary
+
+	class is same as struct but:
+		class everything is private by default
+		struct everything is public
+
+	what is public private and protected:
+		1.public means that everyone outside of the class/struct 
+		can access the data (also called members) or member functions (also called methods)
+
+		2.protected means that protected members or methods can be accessed only from classes
+		which inherits from the base class. (more info comming soon!)
+
+		3.private means - if a data member or method is private ONLY other methods of THE SAME class
+		can access this private data members or methods. (or a friend class but info comming soon!)
+
+	class declarations are put in name.h files - name.h file is called header (or interface or declaration of the class)
+	and implementations are put in name.cpp files - name.cpp file is called implementation
+	RULE: one class in one pair(header, implementation) (classname.h, classname.cpp)
+
+	Every header file start with guards and end with guards:
+		#ifndef CLASSNAME_H_
+		#define CLASSNAME_H_
+
+		class ClassName
+		{
+			....
+		};
+
+		#endif // CLASSNAME_H_H
+
+		this prevents to include a header twice in one file (more info comming soon!)
+		More info here: http://en.wikipedia.org/wiki/Include_guard
+	Every implementation file include its header file.
+
+	This separation gives is a opportunity to work with the same header file and to recompile only the implementation file
+	which is very important in big projects and it is a good practise.
+
+
+	Basic class methods:
+		class Cat
+		{
+			Cat(); // constructor
+			Cat(int legs); // constructor with 1 argument
+			Cat(int legs, int tail_length)l // constructor with 2 arguments
+			...
+			Cat(const Cat& c); // copy constructor
+			Cat& operator = (cosnt Cat& c); // operator =
+			~Cat(); // destructor
+		};
+
+		Copy constructor and operator = takes a const reference to the same class. Const is needed beacuse these methods
+		alter only this object, not the object in the argumnets.
+
+		(comming soon!)
+		// const methods
+		// getters
+		// setters
+
+	RAII (Resource Acquisition In Intialization) - is a paradigm in programming which says that every class which have a handle
+		to a resource (dynamic memory, file handle, COM object, or some external resource) MUST MANAGES ITS ALLOCATION AND ITS RELEASE
+		WITHIN THE CLASS. 
+		More information here: http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
+
+		1.Which means that if you have somewhere in the code of your class a "new" statment which allocates a dynamic memory
+		YOU HAVE TO REALASE THE DYNAMIC MEMORY IN THE DESTRUCTOR OR EARILIER IN THE CODE.
+
+		2.Which means that if you have a file handle in the code of you class (FILE* or fstream or ifstream or ofstream) YOU MUST TO CLOSE
+		THE FILE IN THE DESTRUCTOR OR EARLIER IN THE CODE.
+
+		3.AND SO ON AND ON.
+
+		Example:
+			string class in week1 is an example with allocating and deallocating dynamic memory to store chars
+			vector class in week1 is an example with allocating and deallocating dynamic memory to store ints
+			class with file handle (comming soon!)
+
+		RULE:
+			If your class have a handle to external resource (dynamic memory, file handle, ...etc) YOU MUST REDEFINE COSTRUCTOR (also called ctor),
+			COPY CONSTRUCTOR (also called cctor), OPERATOR = (also called assignment operator), DESTRUCTOR (also called dtor) 
+
+			If your class don't have a handle to external resources you can rely on default implementations of these methods
+
+	(comming soon!)
+	INHERITANCE:
+		
+		basic (public, private, protected)
+		virutal inheritance
+		friend classes
+		virtual/pure virutal methods
+
+	(comming soon!)
+	APPLIED INHERITANCE:
+		Factory design pattern
+
+	(cooming soon!)
+	ADVANCED:
+		// advanced: move semantics (move constructor, move operator =) (comming soon!)
