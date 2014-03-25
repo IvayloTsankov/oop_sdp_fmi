@@ -44,18 +44,29 @@ class summary
 			Cat(int legs); // constructor with 1 argument
 			Cat(int legs, int tail_length)l // constructor with 2 arguments
 			...
-			Cat(const Cat& c); // copy constructor
-			Cat& operator = (cosnt Cat& c); // operator =
 			~Cat(); // destructor
 		};
 
 		Copy constructor and operator = takes a const reference to the same class. Const is needed beacuse these methods
 		alter only this object, not the object in the argumnets.
 
+	More classes:
+		this pointer (comming soon!)
+
+		(comming soon!)
+		class Cat
+		{
+			...
+			Cat& operator = (const Cat& c); // assignment operator
+			Cat (const Cat& c); // copy constructor
+		};
+
 		(comming soon!)
 		// const methods
 		// getters
 		// setters
+
+
 
 	RAII (Resource Acquisition In Intialization) - is a paradigm in programming which says that every class which have a handle
 		to a resource (dynamic memory, file handle, COM object, or some external resource) MUST MANAGES ITS ALLOCATION AND ITS RELEASE
@@ -96,3 +107,5 @@ class summary
 	(cooming soon!)
 	ADVANCED:
 		// advanced: move semantics (move constructor, move operator =) (comming soon!)
+		// mutable 
+		// smart pointer implementation
