@@ -51,6 +51,7 @@ class summary
 		alter only this object, not the object in the argumnets.
 
 	More classes:
+		initialization list
 		this pointer (comming soon!)
 
 		(comming soon!)
@@ -65,7 +66,7 @@ class summary
 		// const methods
 		// getters
 		// setters
-
+		// size_t instead of int when we work with memeory and copy move, memset ...etc.
 
 
 	RAII (Resource Acquisition In Intialization) - is a paradigm in programming which says that every class which have a handle
