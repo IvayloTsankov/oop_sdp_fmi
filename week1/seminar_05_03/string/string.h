@@ -5,7 +5,7 @@ class String
 {
 public:
     String();
-    String(const char* val);
+    String(const char& val);
     ~String();
     
     //assignment and copy
@@ -28,6 +28,10 @@ public:
     const char& operator p[] (int);
     
     String substr(unsigned pos, unsigned size);
+
+private:
+    void copy(char* dest, const char* src);
+    void free(char* targert);
 
 private:
     char* data_;

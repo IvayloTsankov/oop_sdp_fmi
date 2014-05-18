@@ -126,12 +126,14 @@ int Vector::pop_back()
         return INVALID_DATA;
     }
 
+    // the actual size is 25 percent of total capacity
+    // memory need to be shrinked
     if(this->capacity_ == 4*size_)
     {
         shrink();
     }
 
-    --size_;
+    --size_; 
 
     return this->data_[size_]; // or return this->data[--size_];
 }
