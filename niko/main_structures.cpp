@@ -350,5 +350,7 @@ int main()
             break;
         }
     }
+
+    delete [] array;
     return 0;
 }
