@@ -71,6 +71,7 @@ void Swap(Hospital* first, Hospital* second)
 }
 
 
+
 void SortByLastName(Hospital* array, int size)
 {
     if(size < 0)
@@ -82,7 +83,7 @@ void SortByLastName(Hospital* array, int size)
     {
         for(int j = i+1; j < size; ++j)
         {
-            if(array[i].last_name_ < array[j].last_name_)
+            if(array[i].last_name_.compare(array[j].last_name_) > 0)
             {
                 Swap(&array[i], &array[j]);
             }
@@ -221,7 +222,9 @@ void PrintMenu()
          << "6. Find and Print info by the longest peroid of treatment" << endl
          << "7. Find and Print info by the shortest peroid of treatment" << endl
          << "8. Find and Print info by different diagnoses" << endl
-         << "9. Exit" << endl;
+         << "9. PrintAll" << endl
+         << "10. Exit" << endl;
+
 }
 
 int main()
@@ -253,7 +256,7 @@ int main()
         }
         case 2:
         {
-            SortByLastName(array, 100);         
+            SortByLastName(array, counter);         
             break;
         }
         case 3:
@@ -261,7 +264,7 @@ int main()
             cout << "Enter diagnose: ";
             string diagnose;
             cin >> diagnose;
-            Hospital* user = FindByDiagnose(array, 100, diagnose);
+            Hospital* user = FindByDiagnose(array, counter, diagnose);
             if(user != NULL)
             {
                 user->PrintInfo();
@@ -277,7 +280,7 @@ int main()
             cout << "Enter lastname: ";
             string lastname;
             cin >> lastname;
-            Hospital* user = FindByLastName(array, 100, lastname);
+            Hospital* user = FindByLastName(array, counter, lastname);
             if(user != NULL)
             {
                 user->PrintInfo();
@@ -291,7 +294,7 @@ int main()
         case 5:
         {
             cout << "User with most expensive treatment: ";
-            Hospital* user = FindByMostExpensivePrice(array, 100);
+            Hospital* user = FindByMostExpensivePrice(array, counter);
             if(user != NULL)
             {
                 user->PrintInfo();
@@ -305,7 +308,7 @@ int main()
         case 6:
         {
             cout << "User with longest period: ";
-            Hospital* user = FindByLongestPeriod(array, 100);
+            Hospital* user = FindByLongestPeriod(array, counter);
             if(user != NULL)
             {
                 user->PrintInfo();
@@ -320,7 +323,7 @@ int main()
         case 7:
         {
             cout << "User with shortest period: ";
-            Hospital* user = FindByShortestPeriod(array, 100);
+            Hospital* user = FindByShortestPeriod(array, counter);
             if(user != NULL)
             {
                 user->PrintInfo();
@@ -338,14 +341,13 @@ int main()
             break;
         }
         case 9:
-        {
-            delete [] array;
-            exit = true;
+        {   
+            PrintAll(array, counter);
             break;
         }
         case 10:
         {
-            PrintAll(array, 100);
+            exit = true;
             break;
         }
         default:
