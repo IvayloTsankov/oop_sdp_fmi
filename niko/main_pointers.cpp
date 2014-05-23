@@ -91,5 +91,6 @@ int main()
     delete [] y;
     delete [] z;
 
+    system("pause");
     return 0;
 }
