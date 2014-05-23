@@ -4,7 +4,7 @@ using namespace std;
 
 double FarenheitToCelsius(double farenheit)
 {
-    double result = 0;
+    double result;
     result = (5 * (farenheit -32)) / 9;
 
     return result;
@@ -12,7 +12,7 @@ double FarenheitToCelsius(double farenheit)
 
 double CelsiusToFarenheit(double celsius)
 {
-    double result = 0;
+    double result;
     result = ((5 * 32) + (9*celsius)) / 5;
 
     return result;

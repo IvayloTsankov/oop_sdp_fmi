@@ -41,10 +41,12 @@ bool CreateHospital(Hospital& user)
     user.diagnose_ = diagnose;
     user.price_ = price;
     user.period_ = period;
+
+    return true;
 }
 
 
-void swap(Hospital* first, Hospital* second)
+void Swap(Hospital* first, Hospital* second)
 {
     if(first == NULL || second == NULL)
     {
@@ -82,7 +84,7 @@ void SortByLastName(Hospital* array, int size)
         {
             if(array[i].last_name_ < array[j].last_name_)
             {
-                swap(array[i], array[j]);
+                Swap(&array[i], &array[j]);
             }
         }
     }
@@ -199,7 +201,7 @@ void PrintByDiagnose(Hospital* arr, int size)
         {
             if(arr[i].diagnose_ < arr[j].diagnose_)
             {
-                swap(arr[i], arr[j]);
+                Swap(&arr[i], &arr[j]);
             }
         }
     }
