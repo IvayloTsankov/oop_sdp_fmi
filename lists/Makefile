@@ -2,12 +2,11 @@
 
 CC=g++
 CFLAGS=-g -Wall
-OBJECTS=-c
 
-all: test
+all: s_test
 
-test: slinkedlist.h test.cc
-	$(CC) $(CFLAGS) slinkedlist.h test.cc -o $@
+s_test: slinkedlist.h s_test.cc
+	$(CC) $(CFLAGS) slinkedlist.h s_test.cc -o $@
 
 clean:
-	rm test
+	rm *test
