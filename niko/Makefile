@@ -1,6 +1,6 @@
 #simple Makefile
 
-CC=g++
+CC=
 CFLAGS=-g
 
 all: main_structures main_pointers main_functions
