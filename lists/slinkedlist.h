@@ -26,6 +26,7 @@ public:
 		virtual ~SLinkedList();
 		void clear();
 		bool empty() const;
+		Node<T>* begin_iterator();
 		T* front() const;
 		T* back() const;
 		void push_front(const T& elem);
@@ -33,7 +34,7 @@ public:
 		void insert_after(const T& elem, const T& new_elem);
 		void erase(const T& elem);
 		void push_back(const T& elem);
-		void erase_back();
+		void pop_back();
 
 	*/
 
@@ -58,6 +59,7 @@ public:
 	{
 		if(this != &l)
 		{
+			this->clear();
 			copy_data(l);
 			this->size_ = l.size_;
 		}
@@ -65,6 +67,17 @@ public:
 		return *this;
 	}
 
+    Node<T>* begin_iterator() const
+    {
+        return this->head_;
+    }
+
+	const Node<T>* cbegin_iterator() const
+	{
+	    return this->head_;
+	}
+	
+	
 	virtual ~SLinkedList()
 	{
 		clear();
@@ -73,6 +86,11 @@ public:
 	// erase all elements
 	void clear()
 	{
+	    if(this->empty())
+	    {
+	        return;
+	    }
+		
 		Node<T>* it = NULL;
 
 		while(this->head_ != NULL)
@@ -115,12 +133,25 @@ public:
 		
 		// move the head
 		this->head_ = new_elem;
-
+        
+        
+        if(!this->tail_)
+        {
+            // this happens only
+            // when we push first element
+            this->tail_ = this->head_; 
+        }
+		
 		++this->size_;
 	}
 
 	void pop_front()
 	{
+		if(this->empty())
+		{
+		    return;
+		}
+
 		Node<T>* to_remote = this->head_;
 		this->head_ = this->head_->next;
 
@@ -157,6 +188,11 @@ public:
 
 	void erase(const T& elem)
 	{
+	    if(this->empty())
+	    {
+	        return;
+	    }
+
 		Node<T>* it = this->head_;
 		Node<T>* prev = it;
 
@@ -185,17 +221,32 @@ public:
 
 	void push_back(const T& elem)
 	{
-		Node<T>* new_node = new Node<T>();
-		new_node->data = elem;
-		new_node->next = NULL;
+	    Node<T>* new_node = new Node<T>();
+	    new_node->data = elem;
+	    new_node->next = NULL;
 
-		this->tail_->next = new_node;
+	    if(!this->tail_)
+	    {
+	        this->tail_ = new_node;
+	    }
+	    else
+	    {
+	        this->tail_->next = new_node;
+            this->tail_ = new_node;
+        }
+
+        if(!this->head_)
+        {
+            // this happens only on
+            // first push
+            this->head_ = this->tail_;
+        }
 
 		++this->size_;
 	}
 
 	// 0(n) because is single linked
-	void erase_back()
+	void pop_back()
 	{
 		// find the previous than this->tail
 		Node<T>* it = this->head_;
@@ -220,25 +271,12 @@ public:
 private:
 	void copy_data(const SLinkedList<T>& r_list)
 	{
-		// Copy first elem
-		this->head_ = new Node<T>();
-		this->head_->data = r_list.head_->data;
-
-		// loop the list because we have only one element
-		this->head_->next = this->tail_;
-		this->tail_->next = this->head_;
-
-		// Start with second element
-		Node<T>* it = r_list.head_->next;
-
-		while(it != NULL)
-		{
-			Node<T>* new_elem = new Node<T>();
-			new_elem->data = it->data;
-			new_elem->next = it->next;
-
-			this->tail_->next = new_elem;
-		}
+	    Node<T>* it = r_list.head_;
+	    while(it != NULL)
+	    {
+	        this->push_back(it->data);
+	        it = it->next;
+	    }
 	}
 
 	Node<T>* head_;
